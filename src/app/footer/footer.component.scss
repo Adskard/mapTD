@@ -1,0 +1,24 @@
+
+:host{
+    grid-column: 1 / span 3;
+    grid-row: 3 / 4 ;
+    
+    footer {
+        min-height: 100px;
+        background-color: var(--main-color);
+
+        p{
+            margin: 0;
+
+            font-size: xx-large;
+
+            color:white;
+            -webkit-text-stroke: 1px black;
+            text-shadow: 3px 4px red;
+        }
+        #email::after{
+            content: "skardyto@gmail.com";
+        }
+    }
+
+}

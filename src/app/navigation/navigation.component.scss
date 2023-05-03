@@ -1,0 +1,46 @@
+:host{
+
+    ul{
+        list-style-type: none;
+        background-color: var(--main-color);
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0;
+        li{
+            display: contents;
+            
+            a{
+                padding: 2rem 3rem;
+                background-color: var(--main-color);
+                text-decoration: none;
+                color: var(--main-text-color);
+                font-weight: bold;
+                font-size: large;
+                
+                &:hover{
+                    background-color: var(--secondary-color);
+                    text-shadow: 4px 4px #000000;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width:600px) {
+        ul {
+            flex-direction: column;
+            align-items: center;
+            li {
+                a {
+                    box-sizing: border-box;
+                    text-align: center;
+                    padding: 1rem;
+                    width: 100%;
+                }
+            }
+        }
+        
+    }
+}
+

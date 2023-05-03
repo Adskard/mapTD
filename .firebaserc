@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "maptd-4e822"
+  },
+  "targets": {
+    "maptd-4e822": {
+      "hosting": {
+        "mapTD": [
+          "maptd-4e822"
+        ]
+      }
+    }
+  }
+}
