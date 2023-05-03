@@ -97,6 +97,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "mapTD:build:production",
+            "firebaseProject": "maptd-4e822",
+            "firebaseHostingSite": "maptd-4e822"
+          }
         }
       }
     }
