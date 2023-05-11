@@ -1,12 +1,22 @@
-p {
-    color: var(--main-text-color);
-    margin: 0;
-}
+:host{
+    *{
+        color: var(--main-text-color);
+    }
 
-li {
-    color: var(--main-text-color);
-}
+    h1{
+        text-align: center;
+    }
 
-h1{
-    color: var(--main-text-color);
+    video {
+        display: block;
+        margin: auto;
+    }
+    
+    :first-child{
+        margin-top: 0;
+    }
+
+    :last-child{
+        margin-bottom: 0;
+    }
 }

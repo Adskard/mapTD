@@ -1,16 +1,17 @@
 :host{
+    min-height: 100%; 
+
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr 5fr 1fr;
+    margin: 0;
+    padding: 0;
+
     background:
         linear-gradient(120deg, #000000 25%, transparent 25%) -50px, 0,
-        linear-gradient(60deg, #000000 25%, transparent 25%) ,
+        linear-gradient(60deg, #000000 25%, transparent 25%),
         linear-gradient(300deg, #000000 25%, transparent 25%),
-        linear-gradient(240deg, #000000 25%, transparent 25%)-50px, 0;
+        linear-gradient(240deg, #000000 25%, transparent 25%) -50px, 0;
     background-size: 100px 100px;
     background-color: var(--secondary-color);
-
-    @media only screen and (max-width: 600px){
-        grid-template-columns: 1fr 5fr 1fr;
-    }
 }

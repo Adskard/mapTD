@@ -1,10 +1,11 @@
 :host{
     grid-column: 2 / 3;
     grid-row: 2 / 3 ;
+
     
     main{
         background-color: #000;
         padding: 3rem 2rem;
-        
+        min-height: 100%;
     }
 }

@@ -16,13 +16,21 @@
                 background-color: var(--main-color);
                 text-decoration: none;
                 color: var(--main-text-color);
+                border: inset transparent;
                 font-weight: bold;
                 font-size: large;
                 
-                &:hover{
+                &:hover, &:focus{
                     background-color: var(--secondary-color);
                     text-shadow: 4px 4px #000000;
                 }
+            }
+
+            a[class*=active]{
+                background-color: var(--secondary-color);
+                border: inset;
+                border-color: black;
+                text-shadow: 4px 4px #000000;   
             }
         }
     }
