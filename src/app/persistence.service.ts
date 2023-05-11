@@ -34,10 +34,6 @@ export class PersistenceService {
     
 
     try{
-      await db.add("leaderboard", {name:"adam", score: 20});
-      await db.add("leaderboard", {name:"adam", score: 19});
-      await db.add("leaderboard", {name:"adam", score: 18});
-      await db.add("leaderboard", {name:"adam", score: 21});
       const top_leaders = await db.getAllFromIndex("leaderboard", "by-score", IDBKeyRange.lowerBound(1))
       return top_leaders;
     }
