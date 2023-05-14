@@ -19,4 +19,28 @@
     :last-child{
         margin-bottom: 0;
     }
+
+    a:link {
+        text-decoration: none;
+        color:aquamarine;
+      }
+      
+      a:visited {
+        text-decoration: none;
+        color:aqua;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+        color:aqua;
+      }
+      
+      a:active {
+        text-decoration: underline;
+        color:cadetblue;
+      }
+
+    aside p:first-of-type{
+        text-indent: 2rem;
+    }
 }

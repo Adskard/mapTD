@@ -1,5 +1,88 @@
 canvas{
-    width: 100%;
-    height: 70vh;
     background-color: aqua;
+}
+
+*{
+    color: white;
+}
+button{
+    color: black;
+    transition: all .2s ease-in-out;
+}
+
+button:hover{
+    color: black;
+    transform: scale(1.2);
+}
+
+input{
+    color: black;
+}
+
+.game{
+    display: grid;
+    grid-template-columns: 720px auto;
+    grid-template-rows: 1fr;
+    position: relative;
+    button {
+        display: block;
+    }
+
+    #control{
+        text-align: left;
+    }
+
+    
+}
+
+#endgame{
+    padding: 200px 250px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    input:valid{
+        border: solid green;
+    }
+
+    input:invalid{
+        border: solid red;
+    }
+    button{
+        display: inline;
+    }
+    #btnAgain{
+        margin: 1rem;
+        display: block;
+    }
+}
+
+#endgame[hidden]{
+    display: none;
+}
+
+
+
+
+@media only screen and (max-width: 900px) {
+    .game{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        button{
+            display: inline;
+        }
+    
+        #control{
+            text-align: left;
+        }
+        
+    }
+    button:hover{
+        color: black;
+        transform: scale(1.1);
+    }
 }

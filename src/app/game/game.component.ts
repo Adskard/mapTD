@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { GameLogicService } from '../game-logic.service';
-import { GetmapService } from '../getmap.service';
+import { Component, ElementRef, ViewChild, OnInit, AfterViewInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, Output } from '@angular/core';
+import { GameLogicService } from '../service/game-logic.service';
+import { FormBuilder } from '@angular/forms';
+import { PersistenceService } from '../service/persistence.service';
 
 @Component({
   selector: 'app-game',
@@ -11,14 +12,73 @@ export class GameComponent implements AfterViewInit{
 
   @ViewChild('canvas') canvas !: ElementRef<HTMLCanvasElement>;
 
+
+  get health() : number{
+    return this.gameLogic.game.curr_health
+  }  
+  get wave() : number{
+    return this.gameLogic.game.waveNumber
+  } 
+  get money() : number{
+    return this.gameLogic.game.money
+  } 
+  get score() : number{
+    return this.gameLogic.game.score
+  } 
+  get gameEnd() : boolean{
+    return this.gameLogic.game.gameEnd
+  } 
+
+  clickTower = (e: string) : void =>{
+    this.gameLogic.game.selectTower(e)
+  }
+
+  scoreForm = this.formBuilder.group({
+    player_name: ""
+  })
+
+  get paused() : boolean{
+    return this.gameLogic.game.gameStopped
+  }
+
+  playAgain() {
+    console.log("btn pres")
+    this.gameLogic.restart()
+  }
+
+  stop(){
+    this.gameLogic.stop()
+  }
+
+  resume(){
+    this.gameLogic.resume()
+  }
+
+  get hideForm(){
+    return this.scoreForm.disabled
+  }
+
+  onSubmit() : void  {
+    let n = this.scoreForm.value.player_name;
+    let s = this.gameLogic.game.score
+
+    if(n && s){
+      this.persistence.addLeader({
+        name: n,
+        score: s,
+      })
+    }
+    this.scoreForm.disable();
+  }
+
   public ngAfterViewInit() : void {
-    this.canvas.nativeElement.width = window.innerWidth
-    this.canvas.nativeElement.height = window.innerHeight 
+    //this.canvas.nativeElement.width = window.innerWidth
+    //this.canvas.nativeElement.height = window.innerHeight 
     this.gameLogic.startDrawing(this.canvas.nativeElement);
   }
   
   //inject dependencies
-  constructor(private gameLogic : GameLogicService){
-  };
-
+  constructor(private gameLogic : GameLogicService, private persistence : PersistenceService,
+    private formBuilder : FormBuilder){
+  }
 }
