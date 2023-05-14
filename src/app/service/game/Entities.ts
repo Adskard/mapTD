@@ -1,5 +1,4 @@
-import { UntypedFormBuilder } from "@angular/forms";
-
+//main game entity
 export class Game{
     max_health = 10;
     curr_health = this.max_health;
@@ -30,7 +29,7 @@ export class Game{
 
     selected : Tower | undefined;
     
-
+    //Calls everything that needs to be drawn to the canvas
     draw = (time : number) => {
         this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height)
         this.map.draw(this.ctx);
@@ -43,8 +42,7 @@ export class Game{
         this.drawSelected();
     }
 
-    healthEvent = new CustomEvent("health", {detail: this.curr_health})
-
+    //sends next wave of enemies
     sendWave = (num : number) =>{
         console.log("Sending wave " + num)
         const multiplicator = Math.floor(Math.log10(num**2+ 4)) + 3;
@@ -53,6 +51,7 @@ export class Game{
         }
     }
 
+    //main game loop
     playGame = (time : number) =>{
         if(!this.gameStopped){
             this.draw(time)
@@ -70,6 +69,8 @@ export class Game{
             }
         }
     }
+
+    //sets canvas values, adds listeners
     setCanvas = (ctx : CanvasRenderingContext2D, canvas : HTMLCanvasElement) =>{
         this.canvas = canvas;
         this.ctx = ctx;
@@ -81,6 +82,7 @@ export class Game{
         });
     }
 
+    //What kind of tower was selected outside of the canvas
     selectTower = (name:string) =>{
         switch(name){
             case "missile":
@@ -94,6 +96,7 @@ export class Game{
         }
     }
 
+    //Place tower on click
     placeTower = () => {
         if(this.selected && this.money >= this.selected.cost){
             this.selected.location = new Coordinates(this.mouse.x, this.mouse.y)
@@ -103,6 +106,7 @@ export class Game{
         }
     }
 
+    //draw selected tower to be placed on canvas
     drawSelected = () =>{
         if(this.selected){
             this.ctx.globalAlpha = 0.6;
@@ -123,6 +127,7 @@ export class Game{
     }
 }
 
+//Tower for shooting
 class Tower{
     projectile !: Projectile;
     range = 200;
@@ -132,10 +137,12 @@ class Tower{
     lastShot = performance.now();
     cost = 0;
 
+    //draws the tower to the canvas
     draw = (canvas : CanvasRenderingContext2D) => {
         canvas.drawImage(this.model, this.location.x, this.location.y);
     }
 
+    //fires a projectile at closest enemy
     fire = (enemies : Enemy[], canvas : CanvasRenderingContext2D) => {
         //shoot the closest
         enemies.sort( (a,b) => a.currLoc.getDistance(this.location) - 
@@ -157,6 +164,7 @@ class Tower{
     }
 }
 
+//tower types
 class TaserTower extends Tower{
     constructor(game : Game){
         super(game)
@@ -181,6 +189,7 @@ class MissileTower extends Tower{
     }
 }
 
+//Projectile types
 class Projectile {
     length : number = 100;
     dmg =  10;
@@ -219,6 +228,7 @@ class SplashProjectile extends Projectile{
     }
 }
 
+//enemy type
 class Enemy{
     maxHp = 2;
     currHp = this.maxHp;
@@ -249,6 +259,8 @@ class Enemy{
         } 
     }
 
+    //where the enemy will be next
+    //based on scalar of speed and time and direction vector
     nextLocation = (time : number) =>{
         let scalar = this.speed * time;
         this.currLoc = this.currLoc.nextCoordinates(scalar, this.vector);
@@ -268,6 +280,7 @@ class Enemy{
         }
     }
 
+    //draws the enemy to the canvas
     draw = (time : number, canvas : CanvasRenderingContext2D) => {
         canvas.fillStyle = this.color;
         if(this.currHp <= 0){
@@ -294,7 +307,9 @@ class Enemy{
 }
 
 
+//map for the enemies
 class Map{
+    //width around the path
     width !: number;
 
    
@@ -314,6 +329,7 @@ class Map{
     }
 }
 
+//vector/point helper class
 class Coordinates{
 
     subtract = (cord : Coordinates) =>{

@@ -12,6 +12,7 @@ export class PersistenceService {
   getTopLeaders = async () : Promise<LeaderboardItem[] | undefined>  =>  {
     console.log("Getting Leaders")
   
+    //establish db connectino using wrapper
     const db = await openDB<dbSchema>("db", 1, {
       upgrade(db, oldVersion, newVersion, transaction, event) {
         console.log("upgrading")
@@ -34,6 +35,7 @@ export class PersistenceService {
     
 
     try{
+      //get leaders by index
       const top_leaders = await db.getAllFromIndex("leaderboard", "by-score", IDBKeyRange.lowerBound(1))
       return top_leaders;
     }
@@ -44,6 +46,7 @@ export class PersistenceService {
   } 
 
 
+  //add leaders to DB
   addLeader = async (item : LeaderboardItem) : Promise<void>  =>  {
     console.log("Adding leader")
   
@@ -81,9 +84,8 @@ export class PersistenceService {
 
 
 
-
+//database schema for easy insertions
 interface dbSchema extends DBSchema {
-
   leaderboard: {
     value: LeaderboardItem;
     key: number;

@@ -9,35 +9,17 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LeaderboardComponent {
 
-  scoreForm = this.formBuilder.group({
-    player_name: "",
-    player_score: ""
-  })
-
-  onSubmit() : void  {
-    let n = this.scoreForm.value.player_name;
-    let s = Number(this.scoreForm.value.player_score);
-    console.log(n)
-    console.log(s)
-
-    if(n && s){
-      this.persistence.addLeader({
-        name: n,
-        score: s,
-      })
-      this.getLeaders();
-    }
-    this.scoreForm.reset();
-  }
-
+  //get leaders from local persistence
   getLeaders = async () =>{
     const l = await this.persistence.getTopLeaders()
     if(l)
+      //descending order
       this.leaderboardItems = l.reverse().slice(0, this.leaderCount);
   }
   
   leaderboardItems : Array<LeaderboardItem> = []
 
+  //how many we want to see
   leaderCount = 10
 
   public ngAfterViewInit() : void {

@@ -13,6 +13,7 @@ export class GameComponent implements AfterViewInit{
   @ViewChild('canvas') canvas !: ElementRef<HTMLCanvasElement>;
 
 
+  //getters for game values
   get health() : number{
     return this.gameLogic.game.curr_health
   }  
@@ -29,14 +30,17 @@ export class GameComponent implements AfterViewInit{
     return this.gameLogic.game.gameEnd
   } 
 
+  //for selecting towers to place
   clickTower = (e: string) : void =>{
     this.gameLogic.game.selectTower(e)
   }
 
+  //After game score form
   scoreForm = this.formBuilder.group({
     player_name: ""
   })
 
+  //game control
   get paused() : boolean{
     return this.gameLogic.game.gameStopped
   }
@@ -58,6 +62,7 @@ export class GameComponent implements AfterViewInit{
     return this.scoreForm.disabled
   }
 
+  //submit score to localDB
   onSubmit() : void  {
     let n = this.scoreForm.value.player_name;
     let s = this.gameLogic.game.score

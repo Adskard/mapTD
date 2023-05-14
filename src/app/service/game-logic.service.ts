@@ -16,12 +16,14 @@ export class GameLogicService {
     this.time = performance.now();
   }
 
+  //get time delta
   private getTimeSinceLast(newTime : number) : number{
     let d  = newTime - this.time;
     this.updateTime();
     return d;
   }
 
+  //main draw loop function
   draw = (timestamp : number) : void => {
     const td = this.getTimeSinceLast(timestamp)
     this.game.playGame(td);
@@ -33,6 +35,7 @@ export class GameLogicService {
     }
   };
 
+  //restart game
   restart(){
     console.log("restard")
     this.game.gameStopped = true;
@@ -41,18 +44,21 @@ export class GameLogicService {
     this.startDrawing(this.canvas)
   }
 
+  //pause game
   stop(){
     console.log("stop")
     this.game.gameStopped = true;
     cancelAnimationFrame(this.requestId)
   }
 
+  //resume a pause
   resume(){
     console.log("resume")
     this.game.gameStopped = false;
     this.requestId = requestAnimationFrame(this.draw)
   }
 
+  //main method for starting
   startDrawing(canvas : HTMLCanvasElement) : void {
     this.canvas = canvas;
     this.ctx = this.getCanvasContext(canvas)
@@ -61,6 +67,7 @@ export class GameLogicService {
     this.requestId = requestAnimationFrame(this.draw)
   }
 
+  //get context withou undefined
   getCanvasContext = (canvas : HTMLCanvasElement) : CanvasRenderingContext2D =>{
     let context = canvas.getContext("2d");
     if(context === null){
