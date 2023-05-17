@@ -4,7 +4,7 @@ Jednoduchá tower defense game v Angular a Typescript. Jakože hodně jednoduch�
 Pokládejte věžičky na canvas, nasbírejte co nejvyšší skóre. Až hra skončí můžete se přidat na leaderboard pod Player_name.
 LeaderBoard je lokálně udržovaný pomocí IndexedDB
 
-Nasazená na https://maptd-4e822.firebaseapp.com/game .
+Nasazená na https://maptd-4e822.firebaseapp.com/game a https://maptd-4e822.web.app/gam) - alternují se jeden z nich je jeden commit pozadu.
 
 Dokumentace kódu, ale input output parametry jsem moc nepopisoval, protože se to dá vypozorovat z Typescript typů.
 
