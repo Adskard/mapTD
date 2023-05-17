@@ -17,15 +17,18 @@ export class LeaderboardComponent {
       this.leaderboardItems = l.reverse().slice(0, this.leaderCount);
   }
   
+  //initialize leaderboard array
   leaderboardItems : Array<LeaderboardItem> = []
 
-  //how many we want to see
+  //how many players we want to see
   leaderCount = 10
 
   public ngAfterViewInit() : void {
     this.getLeaders();
   }
 
+  //Updates leaderboard with new Array
+  //Overwrites orriginal array
   private updateLeaderBoard(newItems : Array<LeaderboardItem>){
     this.leaderboardItems = newItems;
   }

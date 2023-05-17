@@ -5,14 +5,11 @@ import { openDB, deleteDB, wrap, unwrap, DBSchema } from 'idb';
   providedIn: 'root'
 })
 export class PersistenceService {
-
-  db_name = "leaderboard"
-  score_index = "score_idx"
-
+  //Gets all players with score at least 1
   getTopLeaders = async () : Promise<LeaderboardItem[] | undefined>  =>  {
     console.log("Getting Leaders")
   
-    //establish db connectino using wrapper
+    //establish db connection using wrapper
     const db = await openDB<dbSchema>("db", 1, {
       upgrade(db, oldVersion, newVersion, transaction, event) {
         console.log("upgrading")
@@ -46,7 +43,7 @@ export class PersistenceService {
   } 
 
 
-  //add leaders to DB
+  //add leaderBoard item to DB asynchronously
   addLeader = async (item : LeaderboardItem) : Promise<void>  =>  {
     console.log("Adding leader")
   
@@ -93,6 +90,9 @@ interface dbSchema extends DBSchema {
   };
 }
 
+//Item displayed on leaderboard
+//name - player name
+//score -player score
 export interface LeaderboardItem{
   name: String;
   score: number;

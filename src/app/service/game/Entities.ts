@@ -1,4 +1,4 @@
-//main game entity
+//main game entity, coordinates and holds references to other game entities
 export class Game{
     max_health = 10;
     curr_health = this.max_health;

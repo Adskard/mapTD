@@ -14,18 +14,27 @@ export class GameComponent implements AfterViewInit{
 
 
   //getters for game values
+  //player Health
   get health() : number{
     return this.gameLogic.game.curr_health
   }  
+
+  //gets wave #
   get wave() : number{
     return this.gameLogic.game.waveNumber
   } 
+
+  //gets player money$
   get money() : number{
     return this.gameLogic.game.money
-  } 
+  }
+  
+  //gets player score
   get score() : number{
     return this.gameLogic.game.score
   } 
+
+  //if game ended or not
   get gameEnd() : boolean{
     return this.gameLogic.game.gameEnd
   } 
@@ -45,19 +54,23 @@ export class GameComponent implements AfterViewInit{
     return this.gameLogic.game.gameStopped
   }
 
+  //Restarts the game after game end
   playAgain() {
     console.log("btn pres")
     this.gameLogic.restart()
   }
 
+  //Pauses the game
   stop(){
     this.gameLogic.stop()
   }
 
+  //resumes the paused game
   resume(){
     this.gameLogic.resume()
   }
 
+  //if form should be hidden or not
   get hideForm(){
     return this.scoreForm.disabled
   }
@@ -76,6 +89,7 @@ export class GameComponent implements AfterViewInit{
     this.scoreForm.disable();
   }
 
+  //Do after component init
   public ngAfterViewInit() : void {
     //this.canvas.nativeElement.width = window.innerWidth
     //this.canvas.nativeElement.height = window.innerHeight 

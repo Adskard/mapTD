@@ -7,7 +7,7 @@
         <p>Score: {{score}}</p>
         <form [hidden]="hideForm" [formGroup]="scoreForm" (ngSubmit)="onSubmit()">
             <p>Enter Your Name!</p>
-            <label for="player_name">Player name:</label><br>
+            <label for="name_input">Player name:</label><br>
             <input type="text" minlength="3" maxlength="12" required="" pattern="\w[a-zA-Z]{3,16}" title="ASCII name" placeholder="Your Name" formControlName="player_name" id="name_input">
             <button type="submit" value="">Submit</button>
         </form>
@@ -17,8 +17,8 @@
     </div>
 
     <div [hidden]="gameEnd" id="control">
-        <button (click)="clickTower('missile')"><img src="assets/media/missile.png" width="25" height="25">Missile ($20)</button>
-        <button (click)="clickTower('taser')"><img src="assets/media/tazer.png" width="25" height="25"><br>Tazer ($40)</button>
+        <button (click)="clickTower('missile')"><img src="assets/media/missile.png" width="25" height="25" alt="Image depicting missile tower">Missile ($20)</button>
+        <button (click)="clickTower('taser')"><img src="assets/media/tazer.png" width="25" height="25" alt="Image depicting taser tower"><br>Tazer ($40)</button>
         <button (click)="clickTower('clear')"><br>Clear choice</button>
         <div>
             <p>Cash ${{money}}</p>

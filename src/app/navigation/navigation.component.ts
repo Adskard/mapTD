@@ -9,6 +9,8 @@ export class NavigationComponent {
   navItems : Array<navItem> = [{name: "MapTD", url: "/game"}, {name: "Documentation", url: "/docs"},
   {name: "Leaderboard", url: "/leaderboard"}] ;
 }
+
+//Item used for navigating the page
 interface navItem{
   name : String;
   url? : String;
